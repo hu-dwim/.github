@@ -2,13 +2,11 @@
 
 # What
 
-The hu.dwim universe of Common Lisp projects was built when we decided to do some enterprise development in Common Lisp.
+The hu.dwim.* universe of Common Lisp projects was built when we decided to do some enterprise development in Common Lisp.
 
 # Who
 
-We are a small group of friends (3-5) who used to work together as a team in various contexts for a couple of decades.
-
-Two of us were even shooting together in [QuakeWorld](https://quake.fandom.com/wiki/QuakeWorld), all the way back at the university.
+We are a small group of friends (3-5) who used to work together as a team in various contexts for a couple of decades. Two of us were even shooting together in [QuakeWorld](https://quake.fandom.com/wiki/QuakeWorld), all the way back at the university.
 
 Notably, prior to our Lisp gig we were part of the core team of Charles Simonyi's [IntentSoft](https://en.wikipedia.org/wiki/Intentional_Software) startup, working on an editor that edits structures (as opposed to a string of characters). Several years later [Levy](https://github.com/levy) wrote an interesting experiment in Common Lisp: [ProjecturEd](https://github.com/projectured/projectured/).
 
@@ -22,10 +20,22 @@ Our Common Lisp endeavor lasted from around 2006, for about a decade. Since then
 
 # Status
 
-None of us are working actively in Common Lisp anymore. Throughout those years we developed a few projects that helped pay the bills, but there was/is much more potential lying wasted in the dwim.hu universe.
+None of us are working actively in Common Lisp anymore. Throughout those years we developed a few projects that helped us pay the bills, but sadly, there is much more potential lying wasted in the dwim.hu universe.
 
-# Notable projects and experiments
+We loved darcs, but gave in eventually and converted the majority of our projects to git. Some projects that had non-trivial forks are yet to be converted to git (notably hu.dwim.perec, hu.dwim.rdbms, hu.dwim.web-server, hu.dwim.presentation).
 
-- hu.dwim.perec is an ORM that fully integrates with CLOS. You may read some blog posts from [David Lichteblau](https://lichteblau.blogspot.com/2009/08/cl-perec-blog-series-by-pinterface.html), and [pinterface](https://pinterface.livejournal.com/tag/cl-perec). It has a query engine that is a Lisp DSL with much more freedom than SQL, and it partially or fully compiles down to SQL queries, depending in how much magic you employ, and how much attention you pay for compilability. When compilation to SQL fails, then parts or all of the query is transparently executed in the lisp vm.
-- Business Process Modelling: we used [hu.dwim.delico](https://github.com/hu-dwim/hu.dwim.delico) to [CPS transform](https://en.wikipedia.org/wiki/Continuation-passing_style) lisp code and serialize the continuation into the database whenever user interaction was needed. Logged in users had a list of TODO's that contained the serialized processes that were waiting for their feedback. When a process was continued, it typically displayed the GUI element for the user that initially triggered its suspension. Processes could be written in 100% Common Lisp code, with a few special primitives.
+# Where
+
+The git repos are at https://github.com/hu-dwim/.
+
+There's also http://dwim.hu/, still. It used to run an instance of [hu.dwim.home](https://github.com/hu-dwim/hu.dwim.home), which was kinda like an example project that demonstrated our codebase by documenting itself in the form of a webapp. It has succumbed to bitrot. Today dwim.hu is only serving the darcs repos, most of them already obsoleted by the git conversion.
+
+The darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dwim).
+
+# Notable projects, experiments, contributions
+
+- hu.dwim.perec is an ORM that fully integrates with CLOS. You may read some blog posts from [David Lichteblau](https://lichteblau.blogspot.com/2009/08/cl-perec-blog-series-by-pinterface.html), and [pinterface](https://pinterface.livejournal.com/tag/cl-perec). It has a query engine that is a Lisp DSL with much more freedom than SQL, and yet it partially or fully compiles down to SQL queries, depending in how much magic you employ, and how much attention you pay for compilability. When compilation to SQL fails, then parts or all of the query is transparently executed in the lisp vm.
+- hu.dwim.rdbms is an abstraction layer for various SQL databases. It also contains a lispy DSL for writing quasi-quoted SQL.
+- Business Process Modelling: we used [hu.dwim.delico](https://github.com/hu-dwim/hu.dwim.delico) to [CPS transform](https://en.wikipedia.org/wiki/Continuation-passing_style) plain lisp code and [serialize](https://github.com/hu-dwim/hu.dwim.serializer) the continuation into the database whenever it wanted to wait for an event (e.g. display some UI to a user, sleep until some date, etc). When users logged in they had a list of TODO's that contained the serialized processes that were waiting for their feedback. When a process was continued, it typically displayed the GUI element for the user whose absence initially triggered its suspension. Processes could be written in plain Common Lisp code, with only a few additional primitives and constraints. All of this is going through database transactions.
+- [hu.dwim.computed-class](https://github.com/hu-dwim/hu.dwim.computed-class) is a constraint based change propagation lib, fully integrated with CLOS.
 - TODO to be continued
