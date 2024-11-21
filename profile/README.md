@@ -25,17 +25,19 @@ Our Common Lisp endeavor lasted from around 2006, for about a decade. Since then
 
 # Status
 
-None of us are working actively in Common Lisp anymore. Throughout those years we developed a few projects that helped us pay the bills, but sadly, there is much more potential lying wasted in the dwim.hu universe. All in all, we made about the same money as we would have as employees, but it was much more fun!
+None of us are working actively in Common Lisp anymore. Throughout those years we developed a few projects that helped us pay the bills, but sadly, there is a lot of potential lying wasted in the dwim.hu universe. All in all, we made about the same amount of money as we would have as employees... but it was much more fun!
 
-We loved darcs, but gave in eventually and converted the majority of our projects to git. Some projects that had non-trivial forks are yet to be converted to git (notably hu.dwim.perec, hu.dwim.rdbms, hu.dwim.web-server, hu.dwim.presentation).
+We loved darcs, but gave in eventually and converted the majority of our projects to git. Some projects that had non-trivial forks are yet to be converted to git (notably hu.dwim.perec, hu.dwim.rdbms, hu.dwim.web-server, hu.dwim.presentation), because I want to convert the forks as git branches.
+
+A couple of our apps are still alive at some customers, but no live contracts, and nothing that would require day to day lisp hacking.
 
 # Where
 
 The git repos are at https://github.com/hu-dwim/.
 
-There's also http://dwim.hu/, still. It used to run an instance of [hu.dwim.home](https://github.com/hu-dwim/hu.dwim.home), which was kinda like an example project that demonstrated our codebase by documenting itself in the form of a webapp. It has succumbed to bitrot. Today dwim.hu is only serving the darcs repos, most of them already obsoleted by the git conversion.
+[dwim.hu](http://dwim.hu/) used to run an instance of [hu.dwim.home](https://github.com/hu-dwim/hu.dwim.home). It was kinda like an example project that demonstrated our codebase by documenting itself in the form of a webapp that is written in our codebase. Currently it's succumbed to bitrot, but it could be brought back alive with a little work. Today dwim.hu is only serving the darcs repos, most of them already obsoleted by the git conversion.
 
-The darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dwim).
+Our darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dwim).
 
 # Notable projects, experiments, contributions
 
