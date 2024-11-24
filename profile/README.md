@@ -51,3 +51,14 @@ Our darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dw
 - [hu.dwim.quasi-quote](https://github.com/hu-dwim/hu.dwim.quasi-quote) is a library to quasi-quote any structure. It's like the standard `` `(foo ,bar) `` list quasi-quotation syntax, but generalized to SQL, Strings, JavaScript, PDF, XML, CSS, etc. It is used in our web framework to inline HTML (XML) into lisp code. HTML emission is optimized at compile time into calls to `write-sequence` with literal vectors holding the merged constant parts.
 - hu.dwim.presentation is a component based web ui, with transparent partial page refresh through AJAX requests. It was something back then.
 - TODO to be continued
+
+# Third party opinions
+
+We often got criticism, but usually for surface issues like the use of reader macros (e.g. syntactic sugar like the `#true` `#false` syntax to communicate intention), and how it broke the then fragile CL library infrastructure. Luckily it became much better by the time we closed shop, primarily thanks to Fare's extensive work on ASDF.
+
+The praise we got came from people who digged deeper:
+
+- David Lichteblau wrote [a post](https://lichteblau.blogspot.com/2009/08/cl-perec-blog-series-by-pinterface.html) about our hu.dwim.rdbms and hu.dwim.perec (ORM) libs.
+- He points to [a series of posts](https://pinterface.livejournal.com/tag/cl-perec) on Perec by *pinterface*.
+- [Lisp Project of the Day](http://40ants.com/lisp-project-of-the-day/) mentions a few of our libs ([hu.dwim.def](https://40ants.com/lisp-project-of-the-day/2020/04/0054-hu.dwim.def.html), [hu.dwim.walker](https://40ants.com/lisp-project-of-the-day/2020/04/0044-hu.dwim.walker.html), [hu.dwim.asdf](https://40ants.com/lisp-project-of-the-day/2020/04/0043-hu.dwim.asdf.html)).
+- We got some praise from two fellow lispers on IRC starting at [2013-02-22T11:04](http://ccl.clozure.com/irc-logs/lisp/2013-02/lisp-2013.02.22.txt).
