@@ -11,7 +11,7 @@ We are a small group of friends (3-5) from Hungary who used to work together as 
 Notably, prior to our Lisp gig we were part of the core team of Charles Simonyi's [IntentSoft](https://en.wikipedia.org/wiki/Intentional_Software) startup, working on an editor that edits structures (as opposed to a string of characters). Several years later [Levy](https://github.com/levy) wrote an interesting experiment in Common Lisp: [ProjecturEd](https://github.com/projectured/projectured/).
 
 The core lispers, in alphabetical order:
-- Tamás Borbély
+- [Tamás Borbély](https://github.com/btomi)
 - [Attila Lendvai](https://github.com/attila-lendvai/)
 - [Levente Mészáros](https://github.com/levy)
 
@@ -21,7 +21,7 @@ After we left IntentSoft we were chopping wood at a random software shop. It was
 
 # When
 
-Our Common Lisp endeavor lasted from around 2006, for about a decade. Since then everyone has moved on, and we are merely fighting off the bitrot -- with varying success.
+Our Common Lisp endeavor began around 2006, and lasted for about a decade. Since then everyone has moved on, and nowadays we are mostly just fighting off the bitrot.
 
 # Status
 
@@ -35,7 +35,7 @@ A couple of our apps are still alive at some customers, but no live contracts, a
 
 The git repos are at https://github.com/hu-dwim/.
 
-[dwim.hu](http://dwim.hu/) used to run an instance of [hu.dwim.home](https://github.com/hu-dwim/hu.dwim.home). It was kinda like an example project that demonstrated our codebase by documenting itself in the form of a webapp that is written in our codebase. Currently it's succumbed to bitrot, but it could be brought back alive with a little work. Today dwim.hu is only serving the darcs repos, most of them already obsoleted by the git conversion.
+[dwim.hu](http://dwim.hu/) used to run an instance of [hu.dwim.home](https://github.com/hu-dwim/hu.dwim.home). It was kinda like an example project that demonstrated our codebase by documenting itself in the form of a webapp that is written using our codebase. Currently it's succumbed to bitrot, but it could be brought back alive with a little work. Today dwim.hu is only serving the darcs repos, most of them already obsoleted by the git conversion.
 
 Our darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dwim).
 
@@ -43,21 +43,21 @@ Our darcs repos are also mirrored at [hub.darcs.net](https://hub.darcs.net/hu.dw
 
 - hu.dwim.perec is an ORM that fully integrates with CLOS. You may read some blog posts from [David Lichteblau](https://lichteblau.blogspot.com/2009/08/cl-perec-blog-series-by-pinterface.html), and [pinterface](https://pinterface.livejournal.com/tag/cl-perec). It has a query engine that is a Lisp DSL with much more freedom than SQL, and yet it partially or fully compiles down to SQL queries, depending in how much magic you employ, and how much attention you pay for compilability. When compilation to SQL fails, then parts or all of the query is transparently executed in the lisp vm.
 - hu.dwim.rdbms is an abstraction layer for various SQL databases. It also contains a lispy DSL for writing quasi-quoted SQL.
-- Business Process Modelling: we used [hu.dwim.delico](https://github.com/hu-dwim/hu.dwim.delico) to [CPS transform](https://en.wikipedia.org/wiki/Continuation-passing_style) plain lisp code and [serialize](https://github.com/hu-dwim/hu.dwim.serializer) the continuation into the database whenever it wanted to wait for an event (e.g. display some UI to a user, sleep until some date, etc). When users logged in they had a list of TODO's that contained the serialized processes that were waiting for their feedback. When a process was continued, it typically displayed the GUI element for the user whose absence initially triggered its suspension. Processes could be written in plain Common Lisp code, with only a few additional primitives and constraints. All of this is going through database transactions.
+- Business Process Modelling: we used [hu.dwim.delico](https://github.com/hu-dwim/hu.dwim.delico) to [CPS transform](https://en.wikipedia.org/wiki/Continuation-passing_style) plain lisp code and [serialize](https://github.com/hu-dwim/hu.dwim.serializer) the continuation into the database whenever it wanted to wait for an event (e.g. display some UI to a user, sleep until some date, etc). When users logged in they were presented a list of TODO's that contained the serialized processes that were waiting for their feedback. When a process was continued, it typically displayed the GUI element for the user whose absence initially triggered its suspension. Processes could be written in plain Common Lisp code, with only a few additional primitives and constraints. All of this is happening through database transactions.
 - [hu.dwim.computed-class](https://github.com/hu-dwim/hu.dwim.computed-class) is a constraint based change propagation lib, fully integrated with CLOS.
 - We were really battle-testing SBCL in our projects that were deployed for customers. This led to a lot of bug reports and reproducers, and sometimes even some patches from us. We channeled some of our (East-European) income into financing SBCL development. Threading and stability improved a lot while we were active. This is not to say that we were an important part of SBCL's development! All the credit belongs to its fine contributors and maintainers. But we did make *some* difference.
-- We had major contributions to [Slime](https://github.com/slime/slime/), but we also had major clashes with the rather conservative maintainer at that time. Due to this some of our work is bitrotting away in [our fork](https://github.com/attila-lendvai-patches/slime).
-- [hu.dwim.stefil](https://github.com/hu-dwim/hu.dwim.stefil) is a revolutionary testing framework: `deftest` is a very thin/seamless layer over `defun`. Coding in Slime and running the unit test becomes almost the same thing: a test is just a `defun*` plus a smarter `assert`. A dynamic environment is ensured when a test is called and a special test-run object is returned from the toplevel entry call. This object is inspectable in Slime and it contains a lot of details of the "test run" (read: function call). Tests of course can call other tests recursively. Whenever something fails, the debugger is entered, with a lot of testing related additional restarts. You can often copy-paste a frame's code with its arguments, and you instantly have a reproducer to play with in the REPL. [fiasco](https://github.com/joaotavora/fiasco) is a fork of Stefil.
-- [hu.dwim.reiterate](https://github.com/hu-dwim/hu.dwim.reiterate) is a rewrite of [Iterate](https://gitlab.common-lisp.net/iterate/iterate), but done properly. Sadly, it's stuck at around 80%, and the Iterate compatibility layer is not done either. It could be a drop-in replacement for Iterate, but it's not.
-- [hu.dwim.quasi-quote](https://github.com/hu-dwim/hu.dwim.quasi-quote) is a library to quasi-quote any structure. It's like the standard `` `(foo ,bar) `` list quasi-quotation syntax, but generalized to SQL, Strings, JavaScript, PDF, XML, CSS, etc. It is used in our web framework to inline HTML (XML) into lisp code. HTML emission is optimized at compile time into calls to `write-sequence` with literal vectors holding the merged constant parts.
-- hu.dwim.presentation is a component based web ui, with transparent partial page refresh through AJAX requests. It was something back then.
+- We made major contributions to [Slime](https://github.com/slime/slime/), but we also had major clashes with the rather conservative maintainer at that time. Due to this some of our work is bitrotting away in [our fork](https://github.com/attila-lendvai-patches/slime).
+- [hu.dwim.stefil](https://github.com/hu-dwim/hu.dwim.stefil) is a revolutionary testing framework: `deftest` is a very thin/seamless layer over plain old `defun`. Hacking on Lisp code in Slime, and running the unit tests becomes the same thing with Stefil: a slightly modified `defun*` (`deftest`) and smarter `assert`s. A dynamic environment is ensured when a test is called and a special test-run object is returned from the toplevel `deftest` that was invoked. Failing asserts record the outcome in the test-run objects. This object is inspectable in Slime and it contains a lot of details of the "test run" (read: function call). Tests of course can call other functions=tests recursively. Whenever an assert fails in interactive mode, the debugger is entered with several testing related additional restarts. In this workflow you can often just copy-paste a frame's code with its arguments, and you instantly have a reproducer to play with in the REPL. [fiasco](https://github.com/joaotavora/fiasco) is a fork of Stefil.
+- [hu.dwim.reiterate](https://github.com/hu-dwim/hu.dwim.reiterate) is a rewrite of [Iterate](https://gitlab.common-lisp.net/iterate/iterate), but done properly. Sadly, it's stuck at around 80%, and the Iterate compatibility layer is not done either. It could be a drop-in replacement for Iterate, but it's not there yet.
+- [hu.dwim.quasi-quote](https://github.com/hu-dwim/hu.dwim.quasi-quote) is a library to quasi-quote any structure. It's like the standard `` `(foo ,bar) `` list quasi-quotation syntax, but generalized to any AST, including SQL, Strings, JavaScript, PDF, XML, CSS, etc. It is used in our web framework to inline HTML (XML) into lisp code. HTML emission is optimized at compile time into calls to `write-sequence` with literal vectors holding the merged constant parts.
+- hu.dwim.presentation is a component based web ui, with transparent partial page refresh through AJAX requests. It was something notable back then.
 - TODO to be continued
 
 # Third party opinions
 
 We often got criticism, but usually for surface issues like the use of reader macros (e.g. syntactic sugar like the `#true` `#false` syntax to communicate intention), and how it broke the then fragile CL library infrastructure. Luckily it became much better by the time we closed shop, primarily thanks to Fare's extensive work on ASDF.
 
-The praise we got came from people who digged deeper:
+The praise we got usually came from people who digged deeper:
 
 - David Lichteblau wrote [a post](https://lichteblau.blogspot.com/2009/08/cl-perec-blog-series-by-pinterface.html) about our hu.dwim.rdbms and hu.dwim.perec (ORM) libs.
 - He points to [a series of posts](https://pinterface.livejournal.com/tag/cl-perec) on Perec by *pinterface*.
